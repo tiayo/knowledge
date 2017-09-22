@@ -1,5 +1,10 @@
 <?php
 
+//默认首页
+$this->get('/', function () {
+    return redirect()->route('home');
+});
+
 //验证码
 $this->get('/captcha/{group}', 'CaptchaController@captcha')->name('captcha');
 
