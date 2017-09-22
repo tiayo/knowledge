@@ -90,10 +90,8 @@
                 $(this).attr('name', 'password')
             });
 
-            console.log(UE.getEditor('editor'));
+            //开启编辑器
+            UE.getEditor('editor')
         })
-    </script>
-    <script type="text/javascript">
-
     </script>
 @endsection
