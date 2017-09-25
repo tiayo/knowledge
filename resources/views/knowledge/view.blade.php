@@ -4,6 +4,11 @@
 
 @section('style')
     @parent
+    <style>
+        img{
+            max-width: 100% !important;
+        }
+    </style>
 @endsection
 
 @section('breadcrumb')
