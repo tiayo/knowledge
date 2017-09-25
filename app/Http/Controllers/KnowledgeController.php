@@ -23,7 +23,7 @@ class KnowledgeController extends Controller
     {
         $categories = $this->category->get();
 
-        $knowledge = $this->knowledge->first($id);
+        $knowledge = $this->knowledge->first($id,true);
 
         //获取最新知识
         $knowledge_latests = $this->knowledge->latest(3);

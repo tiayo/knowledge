@@ -22,15 +22,18 @@ class KnowledgeService
      * 否则：抛错
      *
      * @param $id
+     * @param $skip [是否跳过权限验证]
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null|static|static[]
      */
-    public function validata($id)
+    public function validata($id, $skip = false)
     {
         $knowledge = $this->knowledge->first($id);
 
         throw_if(empty($knowledge), Exception::class, '未找到该记录！', 404);
 
-        throw_if(!can('control', $knowledge), Exception::class, '没有权限！', 403);
+        if (!$skip) {
+            throw_if(!can('control', $knowledge), Exception::class, '没有权限！', 403);
+        }
 
         return $knowledge;
     }
@@ -77,12 +80,13 @@ class KnowledgeService
      * 查找指定id的用户
      *
      * @param $id
+     * @param $skip [是否跳过权限验证]
      * @return mixed
      */
-    public function first($id)
+    public function first($id, $skip = false)
     {
         //获取当前客户
-        return $this->validata($id);
+        return $this->validata($id, $skip);
     }
 
     /**
