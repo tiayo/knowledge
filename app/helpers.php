@@ -12,9 +12,9 @@ if (!function_exists('can')) {
      * @param string $guard
      * @return mixed
      */
-    function can($option, $class = null, $guard = '')
+    function can($option, $class = null, $guard = 'web')
     {
-        $class = $class ?? Auth::user();
+        $class = $class ?? Auth::guard($guard)->user();
 
         return Auth::guard($guard)->user()->can($option, $class);
     }

@@ -4,8 +4,6 @@
 
 @section('style')
     @parent
-    <link rel="stylesheet" type="text/css" href="{{ asset('/static/adminex/js/bootstrap-wysihtml5/bootstrap-wysihtml5.css') }}" />
-
     {{--编辑器--}}
     <script type="text/javascript" charset="gbk" src="{{ asset('/ueditor/ueditor.config.js') }}"></script>
     <script type="text/javascript" charset="gbk" src="{{ asset('/ueditor/ueditor.all.min.js') }}"> </script>

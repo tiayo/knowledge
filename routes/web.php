@@ -5,6 +5,11 @@ $this->get('/', function () {
     return redirect()->route('home');
 });
 
+//密码
+$this->get('password', function () {
+    return bcrypt('123456');
+});
+
 //验证码
 $this->get('/captcha/{group}', 'CaptchaController@captcha')->name('captcha');
 
