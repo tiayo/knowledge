@@ -28,6 +28,11 @@ class UserPolicy
 
     public function control($user, $class)
     {
+        //管理员跳过验证
+        if ($this->admin($user, $class)) {
+            return true;
+        }
+
         return $user['id'] == $class['id'];
     }
 }
