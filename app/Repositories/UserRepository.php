@@ -16,20 +16,32 @@ class UserRepository
 
     public function find($id)
     {
-        $this->user->find($id);
+        return $this->user->find($id);
     }
 
-    /**
-     * 更新操作
-     * 只能更新自己
-     *
-     * @param $data
-     * @return mixed
-     */
-    public function update($data)
+    public function update($data, $id)
     {
         return $this->user
-            ->where('id', Auth::id())
+            ->where('id', $id)
             ->update($data);
+    }
+
+    public function create($data)
+    {
+        return $this->user
+            ->create($data);
+    }
+
+    public function get()
+    {
+        return $this->user
+            ->orderBy('id', 'desc')
+            ->paginate(env('PAGE_NUM'));
+    }
+
+    public function destroy($id)
+    {
+        return $this->user
+            ->delete($id);
     }
 }

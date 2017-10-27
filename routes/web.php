@@ -24,10 +24,18 @@ $this->group(['middleware' => 'auth'], function () {
     //登录后首页
     $this->get('home', 'HomeController@index')->name('home');
 
-    //修改账号信息
-    $this->get('account', 'AccountController@view')->name('account');
-    $this->post('account', 'AccountController@post');
-    
+    //添加/修改账号信息
+    $this->get('/user/list/', 'UserController@listView')->name('user_list');
+    $this->get('/user/list/{keyword}', 'UserController@listView')->name('user_search');
+    $this->get('/user/update/{id}', 'UserController@updateView')->name('user_update');
+    $this->post('/user/update/{id}', 'UserController@post');
+
+    $this->group(['middleware' => 'admin'], function () {
+        $this->get('/user/add', 'UserController@addView')->name('user_add');
+        $this->post('/user/add', 'UserController@post');
+        $this->get('/user/destroy/{id}', 'UserController@destroy')->name('user_destroy');
+    });
+
     //栏目
     $this->get('/category/list/', 'CategoryController@listView')->name('category_list');
     $this->get('/category/add', 'CategoryController@addView')->name('category_add');

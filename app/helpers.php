@@ -14,8 +14,12 @@ if (!function_exists('can')) {
      */
     function can($option, $class = null, $guard = 'web')
     {
-        $class = $class ?? Auth::guard($guard)->user();
+        $user = Auth::guard($guard)->user();
 
-        return Auth::guard($guard)->user()->can($option, $class);
+        if (empty($user)) return false;
+
+        $class = $class ?? $user;
+
+        return $user->can($option, $class);
     }
 }

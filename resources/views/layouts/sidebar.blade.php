@@ -3,8 +3,11 @@
 
     <li class="menu-list" id="nav_0"><a href=""><i class="fa fa-user"></i> <span>管理专区</span></a>
         <ul class="sub-menu-list">
-            <li id="nav_0_1"><a href="{{ route('account') }}">账号管理</a></li>
+            <li id="nav_0_1"><a href="{{ route('user_list') }}">账号管理</a></li>
             <li id="nav_0_2"><a href="{{ route('category_list') }}">栏目管理</a></li>
+            @if (can('admin'))
+                <li id="nav_0_3"><a href="{{ route('user_add') }}">添加账号</a></li>
+            @endif
         </ul>
     </li>
 
