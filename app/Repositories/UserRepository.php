@@ -35,6 +35,7 @@ class UserRepository
     public function get()
     {
         return $this->user
+            ->where('id', '>', 0)
             ->orderBy('id', 'desc')
             ->paginate(env('PAGE_NUM'));
     }
