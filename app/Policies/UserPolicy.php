@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
 
 class UserPolicy
 {
@@ -18,7 +17,13 @@ class UserPolicy
      */
     public function admin($user, $class)
     {
-        return $user['name'] == env('ADMIN_NAME');
+        foreach (explode(',', env('ADMIN_NAME')) as $name) {
+            if ($name == $user['name']) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function control($user, $class)
